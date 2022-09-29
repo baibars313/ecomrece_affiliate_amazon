@@ -1,0 +1,23 @@
+{% extends 'base.html'%}
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        {% for cats in all_cats %}
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <a href="{% url 'category' cats.id %}" class="text-decoration-none">
+                <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="width: 16rem; height: 400px; ">
+                    <img src={{cats.image.url}} class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h6 class="card-title  text-dark" style="font-size: 12px;">{{cats.category_name | slice:':50'}}...</h6>
+                      <p class="card-text  text-dark" style="font-size: 12px;">{{cats.category_description | slice:':100'}}...</p>
+                    </div>
+                  </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

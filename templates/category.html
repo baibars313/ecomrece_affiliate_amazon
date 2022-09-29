@@ -1,0 +1,48 @@
+{% extends 'base.html'%}
+{% block content %}
+
+<div class="row">
+    <div class="col-10">
+        <div class="container">
+            <div class="row">
+                {% for cats in all_prods %}
+                <div class="col-lg-3 col-md-6 col-sm-12 my-2">
+                    <a href="{{cats.product_link}}" class="text-decoration-none">
+                        <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="width: 16rem; height: 400px; ">
+                            <img src={{cats.image.url}} class="card-img-top" alt="...">
+                            <div class="card-body text-decoration-none">
+                                <h6 class="card-title  text-dark" style="font-size: 12px;">{{cats.title | slice:':30' |safe}}...</h6>
+                                <p class="card-text  text-dark" style="font-size: 12px;">{{cats.description |slice:':70' | safe}}...</p>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <p class=" text-dark">{{cats.price}} $</p>
+                                    </div>
+                                    <div class="col-8">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="col-2 my-2">
+        <div class="card" style="width: 13rem;">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">CATERGORIES</li>
+              {% for obj in all_cats %}
+             <a href="{% url 'category' obj.id %}"> <li class="list-group-item">{{obj.category_name}}</li></a>
+              {% endfor %}
+            </ul>
+          </div>
+    </div>
+</div>
+{% endblock %}
